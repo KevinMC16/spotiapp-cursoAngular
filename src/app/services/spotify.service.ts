@@ -10,15 +10,19 @@ export class SpotifyService {
     console.log('Servicio Spotify listo');
   }
 
-  getNewReleases(){
+    getNewReleases(){
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQDXL8gujLmFNGEuWWPcbewrLHkqRDsqyHpqPAnA3ng88jS4Mzhds5MlSBbj2N4kImowtZfW1IQmKKmPF5c'
+      'Authorization': 'Bearer BQC3fE32mxpTChRQsOTygq2H3q2dM4yRSdgOhcJ9ZAACgMKZ8Uom37sgEDOHKn0HWPJMoZzFvu9qbwyJrDg'
     });
-    
 
-    this.http.get('https://api.spotify.com/v1/browse/new-releases',{ headers })
-    .subscribe( data =>{
-      console.log(data);
+    return this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers });
+  }
+
+  getArtista(termino: string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer BQC3fE32mxpTChRQsOTygq2H3q2dM4yRSdgOhcJ9ZAACgMKZ8Uom37sgEDOHKn0HWPJMoZzFvu9qbwyJrDg'
     });
+
+    return this.http.get(`https://api.spotify.com/v1/search?q=${ termino }&type=artist&limit=15`, { headers });
   }
 }
